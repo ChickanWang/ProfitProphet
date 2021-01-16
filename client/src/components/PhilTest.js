@@ -21,8 +21,6 @@ function PhilTest(){
         }, 5000);
     };
     
-    
-
     const detect = async (net) =>{
         if (typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState===4){
             const video = webcamRef.current.video;
