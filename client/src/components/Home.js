@@ -2,10 +2,10 @@ import React, { useEffect, useRef} from 'react';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
+import "../App.css";
 
-function PhilTest(){
+function Home(){
     const webcamRef = useRef(null);
-    const canvasRef = useRef(null);
     
     useEffect(()=>{
         runPosenet();
@@ -13,12 +13,12 @@ function PhilTest(){
 
     const runPosenet = async () => {
         const net = await posenet.load({
-          inputResolution: { width: 640, height: 480 },
+          inputResolution: { width: 640, height: 360 },
           scale: 0.5,
         });
         setInterval(() => {
             detect(net);
-        }, 5000);
+        }, 15000);
     };
     
     const detect = async (net) =>{
@@ -37,36 +37,9 @@ function PhilTest(){
 
     return (
         <div>
-            <Webcam ref={webcamRef} style={{
-                position:"absolute", 
-                marginLeft:"auto", 
-                marginRight:"auto",
-                margin:"auto",
-                left:0,
-                right:0,
-                top:0,
-                textAlign: "center",
-                zIndex:9,
-                width:640,
-                height:480
-            }} 
-            />
-            <canvas ref={canvasRef} style={{
-                position:"absolute", 
-                marginLeft:"auto", 
-                marginRight:"auto",
-                margin:"auto",
-                left:0,
-                right:0,
-                top:0,
-                textAlign: "center",
-                zIndex:9,
-                width:640,
-                height:480
-            }}
-            />
+            <Webcam ref={webcamRef} class="video"/>
         </div>
     )
 }
 
-export default PhilTest;
+export default Home;
