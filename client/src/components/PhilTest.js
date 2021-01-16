@@ -1,4 +1,4 @@
-import React, { useRef} from 'react';
+import React, { useEffect, useRef} from 'react';
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
@@ -7,6 +7,10 @@ function PhilTest(){
     const webcamRef = useRef(null);
     const canvasRef = useRef(null);
     
+    useEffect(()=>{
+        runPosenet();
+    }, [])
+
     const runPosenet = async () => {
         const net = await posenet.load({
           inputResolution: { width: 640, height: 480 },
@@ -14,7 +18,7 @@ function PhilTest(){
         });
         setInterval(() => {
             detect(net);
-        }, 100);
+        }, 5000);
     };
     
     
@@ -32,8 +36,6 @@ function PhilTest(){
             console.log(pose);
         }
     }
-
-    runPosenet();
 
     return (
         <div>
