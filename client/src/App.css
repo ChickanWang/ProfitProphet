@@ -1,3 +1,22 @@
 .loginbutton{
-  width: 20vh;
+  width: 50vh;
+  height: 5vh;
+  border-radius: 5vh;
+}
+
+.form{
+  text-align: center;
+  margin-top: 10vh;
+  font-family: 'Montserrat', sans-serif;
+  align-items: center;
+  justify-content: center;
+}
+
+.textbox{
+  margin: auto;
+  width: 50vh;
+}
+
+.inputbox{
+  border-radius: 5vh;
 }
