@@ -1,43 +1,76 @@
-import React, { useEffect, useRef} from 'react';
-import * as tf from "@tensorflow/tfjs";
-import * as posenet from "@tensorflow-models/posenet";
-import Webcam from "react-webcam";
+import React, { useEffect, useState} from 'react';
 import "../App.css";
+import Stock from './Stock';
 
 function Home(){
-    const webcamRef = useRef(null);
-    
+    // const [symbol, setsymbol] = useState([])
+    const [stockcount, setstockcount] = useState(0)
+    // const [cp, setcp] = useState([])
+    // const [pp, setpp] = useState([])
+    // const [news, setnews] = useState([])
+    // const [disc, setdisc] = useState([])
+    const [stocks, setstocks] = useState([])
+    var wlstocks;
+
+    const [isloaded, setloaded] = useState(false)
+
     useEffect(()=>{
-        runPosenet();
+        //login first, get user
+        //get users watchlist symbols (push into stocks)
+
+        setInterval(()=>{
+            //for loop going over all of the symbols  
+            //new scheme
+            
+            //var cp = yifinacne call
+            //var prediciton = rprediction api call
+            //var news = news api call
+            // var disc = disc api call
+            //make a dictionary item with all of them in it
+            //push the item to the stock state
+
+            //old scheme
+            // yfinance api call, push back in the array
+            
+            // prediction api call, push back in the array
+
+            // news api call, make an array of 3 values and push
+
+            // disc api call, make an array of 3 values and push
+            
+        }, 600000)
+
+        //maybe need to move into the interval?
+        setstocks(true)
+
     }, [])
 
-    const runPosenet = async () => {
-        const net = await posenet.load({
-          inputResolution: { width: 640, height: 360 },
-          scale: 0.5,
-        });
-        setInterval(() => {
-            detect(net);
-        }, 15000);
-    };
-    
-    const detect = async (net) =>{
-        if (typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState===4){
-            const video = webcamRef.current.video;
-            const videoWidth = webcamRef.current.video.videoWidth;
-            const videoHeight = webcamRef.current.video.videoHeight;
+    useEffect(()=>{
+        //rebuild the jsx that makes the stock item so it has all stocks
+    }, stockcount)
 
-            webcamRef.current.video.width = videoWidth;
-            webcamRef.current.video.height = videoHeight;
+    function addSymbol(e){
+        //check if its a symbol, if its not then tell them -> maybe have a dropdown?
 
-            const pose = await net.estimateSinglePose(video);
-            console.log(pose);
+        //add the stock then the info for it
+    }
+
+    function makewl(){
+        if(stocks){
+            wlstocks = stocks.map(item => <Stock key={item.stock.symbol} item={item}/>);
         }
     }
 
+    //maybe need to pull it in the return?
+    makewl()
+
     return (
         <div>
-            <Webcam ref={webcamRef} class="video"/>
+            {isloaded? 
+<div>
+    {wlstocks}
+</div>
+                : <p>Loading</p>}
         </div>
     )
 }

@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -40,4 +40,82 @@
 .video{
   width:640px;
   height:360px;
+}
+
+.navbar.center .navbar-inner {
+  text-align: center;
+}
+
+.navbar.center .navbar-inner .nav {
+  display:inline-block;
+  float: none;
+}
+
+html,body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.p {
+  text-align: left;
+  padding-bottom: 32px;
+}
+
+.butn {
+  display: inline-block;
+  border: 1px solid #aaa;
+  border-radius: 40px;
+  padding: 15px 30px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+.form2{
+  display: flex;
+  margin-top: 30vh;
+  font-family: 'Montserrat', sans-serif;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+  /* margin:auto; */
+}
+
+.formbox{
+  max-width: 400px;
+  min-width: 350px; 
+}
+
+.sidebyside{
+  display:flex;
+}
+
+.gobutton{
+  margin: 0 !important;
+  margin-left: 6px;
+}
+
+.textcolour{
+  color:white
+}
+
+.padding{
+  padding-left: 320px;
+}
+
+.jumbotronmargin{
+  margin-top: 3vh;
+}
+
+.card{
+  margin-top: 155px;
+  max-width: 1000px;
+  height: 450px;
+}
+
+.blacktext{
+  font-family: 'Montserrat', sans-serif;
+  color:black;
 }
