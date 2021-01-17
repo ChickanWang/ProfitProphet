@@ -1,5 +1,7 @@
 .loginbutton{
-  width: 20vh;
+  width: 50vh;
+  height: 6vh;
+  border-radius: 5vh;
 }
 
 .navbar{
