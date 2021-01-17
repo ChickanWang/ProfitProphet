@@ -13,6 +13,7 @@ import Register from "./components/Register";
 // import Search from "./components/Search";
 // import Watchlist from "./components/Watchlist";
 import Navbar from "./components/Navbar"
+import Stock from "./components/Stock"
 // import Item from "./components/Item";
 // import NotFound from "./components/NotFound";
 class App extends Component {
@@ -59,6 +60,7 @@ class App extends Component {
               <Route exact path="/home" component={Home2} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/stock/:symbol?" component={Stock} />
               {/* <Route exact path="/search" component={Search} />
               <Route exact path="/watchlist" component={Watchlist} />
               <Route exact path="/item/:upc?" component={Item} />
