@@ -20,7 +20,7 @@ class Navbar extends Component {
     }
     return (
       
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light" style={{"height":"70px"}}>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -28,7 +28,7 @@ class Navbar extends Component {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <Link to="/" className="navItem btn">
-                <span className="navItem"><img className="logo" src={"asd"} alt="logo img" height="30px" style={{padding:0}}/><span style={{fontWeight: 700}}> Profit</span>
+                <span className="navItem" ><img className="logo" src={"asd"} alt="logo img" height="30px" style={{padding:0}}/><span style={{fontWeight: 700}}> Profit</span>
                 <span style={{fontWeight: 200}}>Prophet</span></span>
               </Link>
             </li>
@@ -46,7 +46,7 @@ class Navbar extends Component {
                     
                   <li className="nav-item active">
                     <Link to={route} className="navItem btn">
-                      <span className="navItem">{text}</span>
+                      <span className="navItem" >{text}</span>
                     </Link>
                   </li>
                   

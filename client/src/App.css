@@ -1,3 +1,25 @@
 .loginbutton{
   width: 20vh;
 }
+.navbar{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-shadow: 0 8px 6px -6px #999;
+ 
+  z-index: 2;
+  font-weight: bold;
+}
+.logo{
+  vertical-align: -10px;
+}
+.navbar-collapse{
+  align-items: initial;
+}
+.navItem{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 350;
+  vertical-align: -6px;
+  font-size:16px;
+  line-height: 20px;
+
+}
