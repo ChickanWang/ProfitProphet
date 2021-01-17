@@ -79,9 +79,13 @@ class Login extends Component {
                   <li className="nav-item">
                       <Link to="/register" className="nav-link text-muted">Register</Link>
                   </li>
+                  <a class="btn bluebtn">Hover me</a> 
               </ul>
           </div>
         </nav>
+      <p>test</p>
+
+        <button type="button" class="btn btn-outline-info">Info</button>
       </div>
     );
   }
