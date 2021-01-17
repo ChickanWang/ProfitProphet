@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as num
 timedeltax=datetime.now()
 date_N_days_ago = datetime.now() - datetimee.timedelta(days=200)
+
 tickers=["^GSPC", "MSFT", "AAPL", "AC.TO", "TSLA", "ENB.TO", "TD.TO", "BABA", "FB", "GOOS.TO"]
 output=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 for j in range(len(tickers)):
