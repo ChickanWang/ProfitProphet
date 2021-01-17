@@ -4,7 +4,6 @@ import ast
 from newsscraper import *
 from discussionscraper import *
 from predict import *
-from auth import *
 
 import pyrebase
 import firebase_admin
@@ -129,17 +128,18 @@ def register():
 
 @app.route('/login', methods=['POST'])
 def login():
-	info = request.get_json()
-	unsuccessful = 'Please check your credentials'
-	successful = 'Login successful'
-	if request.method == 'POST':
-		email = info['email']
-		password = info['password']
-		try:
-			user = pb.auth().sign_in_with_email_and_password(email, password)
-			return {'token': "good"}, 200
-		except:
-			return unsuccessful
+    info = request.get_json()
+    unsuccessful = 'Please check your credentials'
+    successful = 'Login successful'
+    if request.method == 'POST':
+        email = info['email']
+        password = info['password']
+    try:
+        user = pb.auth().sign_in_with_email_and_password(email, password)
+        jwt = user['idToken']
+        return {'token': jwt}, 200
+    except:
+        return unsuccessful
 
 def check_token(f):
 	@wraps(f)
@@ -156,7 +156,7 @@ def check_token(f):
 		return f(*args, **kwargs)
 	return wrap
 
-@app.route('/users')
+@app.route('/users', methods=['POST'])
 @check_token
 def userinfo():
     return 'Authenticated'
