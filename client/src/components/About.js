@@ -10,7 +10,7 @@ function About(props){
     }
 
     return (
-        <div className="row"> 
+        <div className="row m-0"> 
             <div className="offset-1 col-md-5 whitetext" style={{paddingTop:"200px"}}>
                     <h1 className="h1">ProfitProphet</h1>
                     <h4>Boost your portfolio with curated stock recommendations</h4> 
