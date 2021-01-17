@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { useParams } from "react-router-dom";
 import {LoginContext} from "./LoginContext";
 class Item extends Component{
     constructor(props){
@@ -89,7 +88,7 @@ class Item extends Component{
             <div className="col-sm-6 blacktext" >
               <h1 className="display-4">{this.state.symbol}</h1>
               <p>Current Price: ${this.state.startprice}</p>
-              <p>Predicted Price: ${this.state.output}</p>
+              <p>Next Hour's Predicted Price: ${this.state.output}</p>
               <div className="results">
                   <iframe src={'https://wallmine.com/widgets/chart/'+this.props.match.params.symbol} async frameborder='0' allowtransparency='true' scrolling='no' style={{width: "100%", height: "450px"}}></iframe>     
               </div>
