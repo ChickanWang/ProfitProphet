@@ -142,6 +142,7 @@ def login():
     try:
         user = pb.auth().sign_in_with_email_and_password(email, password)
         jwt = user['idToken']
+        name = email
         return {'token': jwt}, 200
     except:
         return unsuccessful
@@ -174,11 +175,17 @@ def userinfo():
 @app.route('/add', methods=['POST'])
 def create():
     try:
-        id = request.json['id']
-        token = session['user']
-        user = authe.get_account_info(token)
-        localId = user['users'][0]['localId']
-        stocks_ref.document("new_node").child(localId).set(request.json)
+        # token = session['user']
+        # user = authe.get_account_info(token)
+        # localId = user['users'][0]['localId']
+        # stocks_ref.document("new_node").child(name).set(request.json)
+
+        user = firebase.auth().currentUser
+        if user != null:
+            email = user.email
+            uid = user.uid
+
+        stocks_ref.document(email).set(request.json)
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
