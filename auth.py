@@ -18,7 +18,7 @@ cred = credentials.Certificate('fbAdminConfig.json')
 firebase = firebase_admin.initialize_app(cred)
 pb = pyrebase.initialize_app(config)
 
-# app = Flask(__name__)
+#app = Flask(__name__)
 
 @app.route('/signup', methods=['POST'])
 def register():
@@ -44,7 +44,8 @@ def login():
 		password = info['password']
 		try:
 			user = pb.auth().sign_in_with_email_and_password(email, password)
-			return {'token': "good"}, 200
+			jwt = user['idToken']
+			return {'token': jwt}, 200
 		except:
 			return unsuccessful
 
