@@ -22,8 +22,6 @@ def discsentiment_analysis_example(client, symbol):
     res = requests.get(url)
     soup = BeautifulSoup(res.text, 'html.parser')
     convos = soup.findAll("div", {"class": "C($c-fuji-grey-l) Mb(2px) Fz(14px) Lh(20px) Pend(8px)"})
-#     for tag in convos:
-#            print(tag.text)
 
     fullstring = ""
     for i in range(1, 11):
@@ -33,12 +31,6 @@ def discsentiment_analysis_example(client, symbol):
             fullstring = fullstring + ". " + convos[i].text
     documents = [fullstring]
     response = client.analyze_sentiment(documents=documents)[0]
-    # print("Document Sentiment: {}".format(response.sentiment))
-    # print("Overall scores: positive={0:.2f}; neutral={1:.2f}; negative={2:.2f} \n".format(
-    #     response.confidence_scores.positive,
-    #     response.confidence_scores.neutral,
-    #     response.confidence_scores.negative,
-    # ))
     positivitytotal = 0
     neutraltotal = 0
     negativitytotal = 0

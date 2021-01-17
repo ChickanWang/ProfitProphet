@@ -31,12 +31,6 @@ def newssentiment_analysis_example(client, symbol):
             fullstring = fullstring + ". " + headlines[i].contents[0]
     documents = [fullstring]
     response = client.analyze_sentiment(documents=documents)[0]
-    # print("Document Sentiment: {}".format(response.sentiment))
-    # print("Overall scores: positive={0:.2f}; neutral={1:.2f}; negative={2:.2f} \n".format(
-    #     response.confidence_scores.positive,
-    #     response.confidence_scores.neutral,
-    #     response.confidence_scores.negative,
-    # ))
     positivitytotal = 0
     neutraltotal = 0
     negativitytotal = 0
@@ -64,29 +58,8 @@ def newssentiment_analysis_example(client, symbol):
         positive = positivitytotal / count
         neutral = neutraltotal /count
         negative = negativitytotal / count
-        
-    # print("Document Sentiment: {}".format(response.sentiment))
-    # print("Overall scores: positive={0:.2f}; neutral={1:.2f}; negative={2:.2f} \n".format(
-    #     positive,
-    #     neutral,
-    #     negative,
-    # ))
     return positive, neutral, negative
 
-if __name__ == "__main__":
-    key = os.getenv("KEY")
-    endpoint = os.getenv("ENDPOINT")
-    client = authenticate_client(key, endpoint)
-    symbol = "MSFT"
-    sentiment_analysis_example(client, symbol)
-    # url = "https://news.google.com/rss/search?q=AAPL&hl=en-CA&gl=CA&ceid=CA:en"
-    # res = requests.get(url)
-
-    # soup = BeautifulSoup(res.content, features="lxml")
-
-    # headlines = soup.findAll('title')
-    
-    # print(headlines[2].contents[0])
 
 
 
