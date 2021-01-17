@@ -69,12 +69,17 @@ def discussion():
 def predict():
     allowSelfSignedHttps(True)
     content = request.get_json()
+    symbol = content['symbol']
+    if (symbol != "AC.TO" and symbol != "AAPL" and symbol != "TSLA" and symbol != "ENB.TO" 
+        and symbol != "TD.TO" and symbol != "BABA" and symbol != "FB" and symbol != "GOOS.TO"):
+        symbol = "^GSPC"
     data = {
     "Inputs": {
           "WebServiceInput0":
           [
               {
                     'Datetime': f"{content['datetime']}",
+                    'Symbol': f"{symbol}",
                     'Open': f"{content['open']}",
                     'High': f"{content['high']}",
                     'Low': f"{content['low']}",
@@ -150,7 +155,7 @@ def check_token(f):
 			return {'message':'Invalid token provided.'},400
 		return f(*args, **kwargs)
 	return wrap
-    
+
 @app.route('/users')
 @check_token
 def userinfo():
