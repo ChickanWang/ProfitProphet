@@ -78,7 +78,7 @@ class Login extends Component {
               <input type="email" className="form-control inputbox" onChange={this.onChange} value={this.state.email} id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
             </div>
             <br />
-            <p>{this.email} {this.password}</p>
+            <br />
             <div class="form-group textbox">
               <label htmlFor="exampleInputPassword1">Password</label>
               <input type="password" className="form-control inputbox" onChange={this.onChange} value={this.state.password} id="password" placeholder="Password"/>

@@ -81,7 +81,7 @@ class Register extends Component {
                     aria-describedby="emailHelp" placeholder="Enter email"/>
             </div>
             <br />
-
+            <br />
             <div class="form-group textbox">
               <label htmlFor="exampleInputPassword1">Password</label>
               <input type="password" onChange={this.onChange}
