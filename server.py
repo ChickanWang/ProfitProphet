@@ -4,7 +4,6 @@ import ast
 from newsscraper import *
 from discussionscraper import *
 from predict import *
-from auth import *
 
 import pyrebase
 import firebase_admin
@@ -16,6 +15,7 @@ from pathlib import Path
 import os
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
+
 key = os.getenv("KEY")
 endpoint = os.getenv("ENDPOINT")
 predictkey = os.getenv("PREDICTIONKEY")
@@ -70,7 +70,7 @@ def predict():
     allowSelfSignedHttps(True)
     content = request.get_json()
     symbol = content['symbol']
-    if (symbol != "AC.TO" and symbol != "AAPL" and symbol != "TSLA" and symbol != "ENB.TO" 
+    if (symbol != "MFST" and symbol != "AC.TO" and symbol != "AAPL" and symbol != "TSLA" and symbol != "ENB.TO" 
         and symbol != "TD.TO" and symbol != "BABA" and symbol != "FB" and symbol != "GOOS.TO"):
         symbol = "^GSPC"
     data = {
