@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {LoginContext} from "./LoginContext";
 import '../App.css';
-import Particles from "react-tsparticles";
 
 // User Login Page
 class Login extends Component {

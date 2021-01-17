@@ -9,7 +9,7 @@ import './App.css';
 import {LoginContext} from "./components/LoginContext";
 // import Home from './components/Home';
 import Login from "./components/Login";
-// import Register from "./components/Register";
+import Register from "./components/Register";
 // import Search from "./components/Search";
 // import Watchlist from "./components/Watchlist";
 import Navbar from "./components/Navbar"
@@ -58,11 +58,11 @@ class App extends Component {
             <Switch>
               {/* <Route exact path="/" component={Home} /> */}
               <Route exact path="/login" component={Login} />
-              {/* <Route exact path="/register" component={Register} />
-              <Route exact path="/search" component={Search} />
+              <Route exact path="/register" component={Register} />
+              {/* <Route exact path="/search" component={Search} />
               <Route exact path="/watchlist" component={Watchlist} />
               <Route exact path="/item/:upc?" component={Item} />
-              <Route path="/" component={NotFound} /> */}
+              <Route path="/" component={NotFound} />  */}
             </Switch>
           </div>
         </Router>
