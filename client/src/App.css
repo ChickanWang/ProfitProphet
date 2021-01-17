@@ -1,45 +1,73 @@
-.loginbutton{
-  width: 50vh;
-  height: 6vh;
-  border-radius: 5vh;
+.App {
+  text-align: left;
 }
 
-.navbar{
-  padding-top: 15px;
-  padding-bottom: 15px;
-  box-shadow: 0 8px 6px -6px #999;
- 
-  z-index: 2;
-  font-weight: bold;
-}
-.logo{
-  vertical-align: -10px;
-}
-.navbar-collapse{
-  align-items: initial;
-}
-.navItem{
-  font-family: 'Poppins', sans-serif;
-  font-weight: 350;
-  vertical-align: -6px;
-  font-size:16px;
-  line-height: 20px;
-
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.form{
-  text-align: center;
-  margin-top: 10vh;
-  font-family: 'Montserrat', sans-serif;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.textbox{
-  margin: auto;
-  width: 50vh;
+.App-link {
+  color: #61dafb;
 }
 
-.inputbox{
-  border-radius: 5vh;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.video{
+  width:640px;
+  height:360px;
+}
+
+.navbar.center .navbar-inner {
+  text-align: center;
+}
+
+.navbar.center .navbar-inner .nav {
+  display:inline-block;
+  float: none;
+}
+
+html,body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.p {
+  text-align: left;
+  padding-bottom: 32px;
+}
+
+.butn {
+  display: inline-block;
+  border: 1px solid #aaa;
+  border-radius: 40px;
+  padding: 15px 30px;
+  margin-right: 15px;
+  margin-bottom: 10px;
 }

@@ -41,7 +41,7 @@ function Home(){
         }, 600000)
 
         //maybe need to move into the interval?
-        setloaded = true
+        setstocks(true)
 
     }, [])
 

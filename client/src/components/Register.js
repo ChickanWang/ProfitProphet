@@ -1,109 +1,57 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import {LoginContext} from "./LoginContext"
+import React, {useState} from 'react';
+import '../App.css';
+import AuthService from '../services/AuthService'
 
-class Register extends Component {
-  constructor() {
-      super();
-      this.state = {
+function Homepage() {
+    const [user,setUser] = useState({email: "", password : ""});
+    const [message,setMessage] = useState(null)
 
-        email: "",
-        password: "",
-
-        errors: {}
-      };
-
-      this.onChange = this.onChange.bind(this)
-      this.onSubmit = this.onSubmit.bind(this)
-  }
-  
-  componentDidMount(){
-      this._isMounted = true;
-  }
-  componentWillUnmount() {
-      this._isMounted = false;
-  }
-  // Form Change handler
-  onChange(e){
-      this.setState({ [e.target.id]: e.target.value });
-  };
-
-  // Create new user account from form/state data
-  onSubmit(e){
-      e.preventDefault();
-      const newUser = {
-        email: this.state.email,
-        password: this.state.password,
-
-      }
-
-      const requestOptions = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newUser)
-      }
-      
-      // Make request to backend to create account
-      console.log(requestOptions)
-      fetch('/api/register', requestOptions)
-      .then(response => {
-      const r = response.json()
-          if(response.ok){
-              this.props.history.push("/login");
-          }
-          return r
-      })
-      .then(data => {
-          if(this._isMounted){
-              this.setState({ errors: data })
-          }
-      })
-  };
-
-  render() {
-    // Redirect if already logged in
-    if(this.context.loggedIn){
-      this.props.history.push("/search");
+    const onChange = e => {
+        setUser({...user,[e.target.name] : e.target.value});
     }
-      const { errors } = this.state;
-      return (
-        <div>
-        <div className="form">
-          <h1>Register</h1>
-          <br />
-          <br />
-          <br />
-          <form onSubmit={this.onSubmit}>
-            <div className="form-group textbox">
-              <label htmlFor="exampleInputEmail1">Email address</label>
-              <input type="email" className="form-control inputbox" id="email" onChange={this.onChange}
-                    value={this.state.email}
-                    aria-describedby="emailHelp" placeholder="Enter email"/>
-            </div>
-            <br />
-            <br />
-            <div class="form-group textbox">
-              <label htmlFor="exampleInputPassword1">Password</label>
-              <input type="password" onChange={this.onChange}
-                    value={this.state.password}
-                    className="form-control inputbox" id="password" placeholder="Password"/>
-            </div>
-            <br />
-            <br />
-            <br />
-            <button type="submit" className="btn btn-outline-primary loginbutton">Register</button>
-          <br />
-          <br />
-          <br />
-          <br />
-          <p>Already have an account? Log in!</p>
-          <button type="button" onClick={()=>this.props.history.push("/login")} className="btn btn-outline-primary loginbutton">Log in</button>
-          </form>
+
+    const emptyForm = () => {
+        setUser(() => {
+            return {
+                    username: '',
+                    password: ''
+            }
+        })
+    }
+
+    const onSubmit = e =>{
+        e.preventDefault();
+        AuthService.register(user).then(data=>{
+            const {message} = data;
+            setMessage(message);
+        });
+      }
+
+    return (
+        <div>    
+            <ul>
+            <li><a href="">Register</a></li>
+            <li><a href="">Login</a></li>
+            </ul>
+
+            <form onSumbit={onSubmit}>
+                <div class="register">
+
+                <h1>Register</h1>
+
+                <h2>Username:</h2>
+
+                <input type="text" class="textboxclass" />
+
+                <h2>Password:</h2>
+
+                <input type="text" class="textboxclass" />
+                </div>
+            </form>
+
+            {/* {message ? <Message message={message}/> : null} */}
         </div>
-      </div>
-      );
-    }
+    )
 }
 
-Register.contextType = LoginContext
-export default Register;
+export default Homepage;

@@ -7,9 +7,10 @@ import {
 import './App.css';
 
 import {LoginContext} from "./components/LoginContext";
-// import Home from './components/Home';
+import Home2 from './components/Home2';
 import Login from "./components/Login";
 import Register from "./components/Register";
+import About from "./components/About";
 // import Search from "./components/Search";
 // import Watchlist from "./components/Watchlist";
 import Navbar from "./components/Navbar"
@@ -56,9 +57,10 @@ class App extends Component {
           <div className="App">
           <Navbar />
             <Switch>
-              {/* <Route exact path="/" component={Home} /> */}
+              <Route exact path="/home2" component={Home2} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/" component={About} />
               {/* <Route exact path="/search" component={Search} />
               <Route exact path="/watchlist" component={Watchlist} />
               <Route exact path="/item/:upc?" component={Item} />
