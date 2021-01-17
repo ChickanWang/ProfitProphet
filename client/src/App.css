@@ -63,3 +63,7 @@
 .sidebyside{
   display:flex;
 }
+
+.gobutton{
+  margin-top: 5px;
+}

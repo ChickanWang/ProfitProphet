@@ -1,9 +1,11 @@
-import React, { useEffect, useState} from 'react';
+import React, { useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import "../App.css";
 
 function Home2(){
     const [stock, setstocks] = useState("")
     const [message, setmessage] = useState("")
+    const history = useHistory();
 
     function handleStockChange(e){
         setstocks(e.target.value)
@@ -11,8 +13,7 @@ function Home2(){
 
     function handleSubmit(e){
         e.preventDefault();
-
-        //check if stock exists
+        history.push(`/home/${stock}`);
     }
 
     return (
@@ -22,7 +23,7 @@ function Home2(){
                     <label htmlFor="formGroupExampleInput">Enter Stock Symbol</label>
                     <div className="sidebyside">
                         <input type="text" name="stock" id="stock" className="form-control textbox" value={stock} onChange={handleStockChange} placeholder="e.g MFST"/>
-                        <button type="submit" className="btn btn-primary mb-2">Go!</button>
+                        <button type="submit" className="btn btn-primary mb-1 gobutton">Go!</button>
                     </div>
                 </div>
             </form>
