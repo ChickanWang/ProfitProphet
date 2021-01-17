@@ -13,7 +13,7 @@ function Home2(){
 
     function handleSubmit(e){
         e.preventDefault();
-        history.push(`/home/${stock}`);
+        history.push(`/stock/${stock}`);
     }
 
     return (

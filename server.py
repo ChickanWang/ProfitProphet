@@ -123,7 +123,7 @@ def predict():
         # print(error.info())
         # print(json.loads(error.read().decode("utf8", 'ignore')))
 
-    data = {"result": result}
+    data = {"currentprice": openprice, "result": result}
     response = app.response_class(
         response=json.dumps(data),
         status=200,
