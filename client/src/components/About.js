@@ -6,7 +6,7 @@ import Pickture from  "../Stock.png"
 function About(props){
 
     const onStart = e => {
-        props.history.push('/stocks')
+        props.history.push('/stock')
     }
 
     return (

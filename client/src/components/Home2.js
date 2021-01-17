@@ -19,11 +19,11 @@ function Home2(){
     return (
         <div className="form2">
             <form onSubmit={handleSubmit}>
-                <div className="form-group formbox">
+                <div className="form-group formbox textcolour">
                     <label htmlFor="formGroupExampleInput">Enter Stock Symbol</label>
                     <div className="sidebyside">
                         <input type="text" name="stock" id="stock" className="form-control textbox" value={stock} onChange={handleStockChange} placeholder="e.g MSFT"/>
-                        <button type="submit" className="btn btn-primary mb-1 gobutton">Go!</button>
+                        <button type="submit" className="btn btn-outline-primary mb-1 gobutton">Go!</button>
                     </div>
                 </div>
             </form>
