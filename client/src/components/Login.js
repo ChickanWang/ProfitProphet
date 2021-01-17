@@ -39,9 +39,10 @@ class Login extends Component {
         body: JSON.stringify(userData)
     }
 
+    // console.log(requestOptions)
     //NEED TO MODIFY THIS 
     // Request token for corresponding user account from backend
-    console.log(requestOptions)
+    // console.log(requestOptions)
     fetch('/api/login', requestOptions)
         .then(response => {
           const r = response.json()
@@ -71,13 +72,13 @@ class Login extends Component {
           <br />
           <br />
           <br />
-          <form>
+          <form onSubmit={this.onSubmit}>
             <div className="form-group textbox">
               <label htmlFor="exampleInputEmail1">Email address</label>
               <input type="email" className="form-control inputbox" onChange={this.onChange} value={this.state.email} id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
             </div>
             <br />
-
+            <p>{this.email} {this.password}</p>
             <div class="form-group textbox">
               <label htmlFor="exampleInputPassword1">Password</label>
               <input type="password" className="form-control inputbox" onChange={this.onChange} value={this.state.password} id="password" placeholder="Password"/>
