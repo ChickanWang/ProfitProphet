@@ -4,11 +4,12 @@ import ast
 from newsscraper import *
 from discussionscraper import *
 from predict import *
+import yfinance as yf
 
-import pyrebase
-import firebase_admin
-from firebase_admin import credentials, auth, firestore, initialize_app
-from functools import wraps
+# import pyrebase
+# import firebase_admin
+# from firebase_admin import credentials, auth, firestore, initialize_app
+# from functools import wraps
 
 from dotenv import load_dotenv
 from pathlib import Path
@@ -21,23 +22,23 @@ endpoint = os.getenv("ENDPOINT")
 predictkey = os.getenv("PREDICTIONKEY")
 predictendpoint = os.getenv("PREDICTIONENDPOINT")
 
-config = {
-    "apiKey": os.getenv("FBK"),
-    "authDomain": os.getenv("FBD"),
-    "projectId": os.getenv("FBPID"),
-    "storageBucket": os.getenv("FBSB"),
-    "messagingSenderId": os.getenv("FBMSI"),
-	"databaseURL": "",
-    "appId": os.getenv("FBAID")}
+# config = {
+#     "apiKey": os.getenv("FBK"),
+#     "authDomain": os.getenv("FBD"),
+#     "projectId": os.getenv("FBPID"),
+#     "storageBucket": os.getenv("FBSB"),
+#     "messagingSenderId": os.getenv("FBMSI"),
+# 	"databaseURL": "",
+#     "appId": os.getenv("FBAID")}
 	
-cred = credentials.Certificate('fbAdminConfig.json')
-firebase = initialize_app(cred)
-db = firestore.client()
-stocks_ref = db.collection('stocks')
+# cred = credentials.Certificate('fbAdminConfig.json')
+# firebase = initialize_app(cred)
+# db = firestore.client()
+# stocks_ref = db.collection('stocks')
 
-pb = pyrebase.initialize_app(config)
-db = pb.database()
-authe = pb.auth()
+# pb = pyrebase.initialize_app(config)
+# db = pb.database()
+# authe = pb.auth()
 
 
 app = Flask(__name__)
@@ -75,9 +76,19 @@ def predict():
     allowSelfSignedHttps(True)
     content = request.get_json()
     symbol = content['symbol']
-    if (symbol != "MFST" and symbol != "AC.TO" and symbol != "AAPL" and symbol != "TSLA" and symbol != "ENB.TO" 
+   
+    if (symbol != "MSFT" and symbol != "AC.TO" and symbol != "AAPL" and symbol != "TSLA" and symbol != "ENB.TO" 
         and symbol != "TD.TO" and symbol != "BABA" and symbol != "FB" and symbol != "GOOS.TO"):
         symbol = "^GSPC"
+
+    ticker = yf.Ticker(symbol)
+    openprice = ticker.info["bid"]
+    high = ticker.info["dayHigh"]
+    low = ticker.info["dayLow"]
+    close= 0
+
+    # print(ticker.info)
+    # print(ticker.info["bid"])
     data = {
     "Inputs": {
           "WebServiceInput0":
@@ -85,10 +96,10 @@ def predict():
               {
                     'Datetime': f"{content['datetime']}",
                     'Symbol': f"{symbol}",
-                    'Open': f"{content['open']}",
-                    'High': f"{content['high']}",
-                    'Low': f"{content['low']}",
-                    'Close': f"{content['close']}",
+                    'Open': f"{openprice}",
+                    'High': f"{high}",
+                    'Low': f"{low}",
+                    'Close': f"{close}",
               },
           ],
         },
@@ -112,7 +123,7 @@ def predict():
         # print(error.info())
         # print(json.loads(error.read().decode("utf8", 'ignore')))
 
-    data = {"result": result}
+    data = {"currentprice": openprice, "result": result}
     response = app.response_class(
         response=json.dumps(data),
         status=200,
@@ -120,75 +131,65 @@ def predict():
     return response
 
 
-@app.route('/register', methods=['POST'])
-def register():
-	info = request.get_json()
-	email = info['email']
-	password = info['password']
-	user = auth.create_user(
-           email=email,  
-	       password=password
-        )
-	return 'Success', 200
+# @app.route('/register', methods=['POST'])
+# def register():
+# 	info = request.get_json()
+# 	email = info['email']
+# 	password = info['password']
+# 	user = auth.create_user(
+#            email=email,  
+# 	       password=password
+#         )
+# 	return 'Success', 200
 
-@app.route('/login', methods=['POST'])
-def login():
-    info = request.get_json()
-    unsuccessful = 'Please check your credentials'
-    successful = 'Login successful'
-    if request.method == 'POST':
-        email = info['email']
-        password = info['password']
-    try:
-        user = pb.auth().sign_in_with_email_and_password(email, password)
-        jwt = user['idToken']
-        name = email
-        return {'token': jwt}, 200
-    except:
-        return unsuccessful
+# @app.route('/login', methods=['POST'])
+# def login():
+#     info = request.get_json()
+#     unsuccessful = 'Please check your credentials'
+#     successful = 'Login successful'
+#     if request.method == 'POST':
+#         email = info['email']
+#         password = info['password']
+#     try:
+#         user = pb.auth().sign_in_with_email_and_password(email, password)
+#         jwt = user['idToken']
+#         return {'token': jwt}, 200
+#     except:
+#         return unsuccessful
 
-def check_token(f):
-	@wraps(f)
-	def wrap(*args,**kwargs):
-		content= request.get_json()
-		token= content['authorization']
-		if not token:
-			return {'message': 'No token provided'},400
-		try:
-			user = auth.verify_id_token(token)
-			request.user = user
-		except:
-			return {'message':'Invalid token provided.'},400
-		return f(*args, **kwargs)
-	return wrap
+# def check_token(f):
+# 	@wraps(f)
+# 	def wrap(*args,**kwargs):
+# 		content= request.get_json()
+# 		token= content['authorization']
+# 		if not token:
+# 			return {'message': 'No token provided'},400
+# 		try:
+# 			user = auth.verify_id_token(token)
+# 			request.user = user
+# 		except:
+# 			return {'message':'Invalid token provided.'},400
+# 		return f(*args, **kwargs)
+# 	return wrap
 
-@app.route('/authenticated', methods=['POST'])
-@check_token
-def userinfo():
-    return 'Authenticated'
+# @app.route('/authenticated', methods=['POST'])
+# @check_token
+# def userinfo():
+#     return 'Authenticated'
 
-# @app.route('/logout', methods=['POST'])
-# def logout():
-#         authe.signOut()
-#         return {'message': 'Success'},200
+# # @app.route('/logout', methods=['POST'])
+# # def logout():
+# #         authe.signOut()
+# #         return {'message': 'Success'},200
 
-@app.route('/add', methods=['POST'])
-def create():
-    try:
-        # token = session['user']
-        # user = authe.get_account_info(token)
-        # localId = user['users'][0]['localId']
-        # stocks_ref.document("new_node").child(name).set(request.json)
-
-        user = firebase.auth().currentUser
-        if user != null:
-            email = user.email
-            uid = user.uid
-
-        stocks_ref.document(email).set(request.json)
-        return jsonify({"success": True}), 200
-    except Exception as e:
-        return f"An Error Occured: {e}"
+# @app.route('/add', methods=['POST'])
+# def create():
+#     try:
+#         id = request.json['id']
+#         stocks_ref.document(id).set(request.json)
+#         return jsonify({"success": True}), 200
+#     except Exception as e:
+#         return f"An Error Occured: {e}"
 
 if __name__ == "__main__": 
     app.run(debug=True)

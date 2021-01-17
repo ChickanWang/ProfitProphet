@@ -14,6 +14,7 @@ import About from "./components/About";
 // import Search from "./components/Search";
 // import Watchlist from "./components/Watchlist";
 import Navbar from "./components/Navbar"
+import Stock from "./components/Stock"
 // import Item from "./components/Item";
 // import NotFound from "./components/NotFound";
 class App extends Component {
@@ -57,10 +58,14 @@ class App extends Component {
           <div className="App">
           <Navbar />
             <Switch>
-              <Route exact path="/home2" component={Home2} />
+              <Route exact path="/stock" component={Home2} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+<<<<<<< HEAD
               <Route exact path="/" component={About} />
+=======
+              <Route exact path="/stock/:symbol" component={Stock} />
+>>>>>>> 0172c154959f10e7f3f02b90379039458bbd5825
               {/* <Route exact path="/search" component={Search} />
               <Route exact path="/watchlist" component={Watchlist} />
               <Route exact path="/item/:upc?" component={Item} />
