@@ -60,7 +60,7 @@ class App extends Component {
               <Route exact path="/home" component={Home2} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/stock/:symbol?" component={Stock} />
+              <Route exact path="/stock/:symbol" component={Stock} />
               {/* <Route exact path="/search" component={Search} />
               <Route exact path="/watchlist" component={Watchlist} />
               <Route exact path="/item/:upc?" component={Item} />

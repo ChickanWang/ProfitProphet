@@ -22,7 +22,7 @@ function Home2(){
                 <div className="form-group formbox">
                     <label htmlFor="formGroupExampleInput">Enter Stock Symbol</label>
                     <div className="sidebyside">
-                        <input type="text" name="stock" id="stock" className="form-control textbox" value={stock} onChange={handleStockChange} placeholder="e.g MFST"/>
+                        <input type="text" name="stock" id="stock" className="form-control textbox" value={stock} onChange={handleStockChange} placeholder="e.g MSFT"/>
                         <button type="submit" className="btn btn-primary mb-1 gobutton">Go!</button>
                     </div>
                 </div>

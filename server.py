@@ -77,7 +77,7 @@ def predict():
     content = request.get_json()
     symbol = content['symbol']
    
-    if (symbol != "MFST" and symbol != "AC.TO" and symbol != "AAPL" and symbol != "TSLA" and symbol != "ENB.TO" 
+    if (symbol != "MSFT" and symbol != "AC.TO" and symbol != "AAPL" and symbol != "TSLA" and symbol != "ENB.TO" 
         and symbol != "TD.TO" and symbol != "BABA" and symbol != "FB" and symbol != "GOOS.TO"):
         symbol = "^GSPC"
 
@@ -87,8 +87,8 @@ def predict():
     low = ticker.info["dayLow"]
     close= 0
 
-    print(ticker.info)
-    print(ticker.info["bid"])
+    # print(ticker.info)
+    # print(ticker.info["bid"])
     data = {
     "Inputs": {
           "WebServiceInput0":
