@@ -64,10 +64,10 @@ def check_token(f):
 		return f(*args, **kwargs)
 	return wrap
 
-@app.route('/users')
+@app.route('/api/userinfo')
 @check_token
 def userinfo():
-    return 'u are authenticated'
+    return {'data': "authorized"}, 200
 
 if __name__ == '__main__':
 	app.run(debug=True)
