@@ -41,6 +41,7 @@ class Login extends Component {
 
     //NEED TO MODIFY THIS 
     // Request token for corresponding user account from backend
+    console.log(requestOptions)
     fetch('/api/login', requestOptions)
         .then(response => {
           const r = response.json()
@@ -51,7 +52,7 @@ class Login extends Component {
           this.setState({ errors: data })
           if(data.success===true){
               toggleLogin(data.token)
-                this.props.history.push("/search");
+              this.props.history.push("/search");
           }
         })
 
@@ -65,7 +66,7 @@ class Login extends Component {
     const { errors } = this.state;
     return (
       <div>
-        <div className="form">
+        <div className="form" onSubmit={this.onSubmit}>
           <h1>Login</h1>
           <br />
           <br />
@@ -73,13 +74,13 @@ class Login extends Component {
           <form>
             <div className="form-group textbox">
               <label htmlFor="exampleInputEmail1">Email address</label>
-              <input type="email" className="form-control inputbox" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+              <input type="email" className="form-control inputbox" onChange={this.onChange} value={this.state.email} id="email" aria-describedby="emailHelp" placeholder="Enter email"/>
             </div>
             <br />
 
             <div class="form-group textbox">
               <label htmlFor="exampleInputPassword1">Password</label>
-              <input type="password" className="form-control inputbox" id="exampleInputPassword1" placeholder="Password"/>
+              <input type="password" className="form-control inputbox" onChange={this.onChange} value={this.state.password} id="password" placeholder="Password"/>
             </div>
             <br />
             <br />
