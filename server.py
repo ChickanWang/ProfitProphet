@@ -33,6 +33,8 @@ config = {
 cred = credentials.Certificate('fbAdminConfig.json')
 firebase = firebase_admin.initialize_app(cred)
 pb = pyrebase.initialize_app(config)
+db = pb.database()
+authe = pb.auth()
 
 
 app = Flask(__name__)
@@ -118,7 +120,6 @@ def predict():
 @app.route('/register', methods=['POST'])
 def register():
 	info = request.get_json()
-	print(info)
 	email = info['email']
 	password = info['password']
 	user = auth.create_user(
@@ -157,10 +158,20 @@ def check_token(f):
 		return f(*args, **kwargs)
 	return wrap
 
-@app.route('/users', methods=['POST'])
+@app.route('/authenticated', methods=['POST'])
 @check_token
 def userinfo():
     return 'Authenticated'
 
-if __name__ == "__main__":
+# @app.route('/logout', methods=['POST'])
+# def logout():
+#         authe.signOut()
+#         return {'message': 'Success'},200
+
+@app.route('/add', methods=['POST'])
+def add():
+    content = request.get_json()
+    db.child("user").push(content)
+
+if __name__ == "__main__": 
     app.run(debug=True)
