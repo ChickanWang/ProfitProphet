@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {LoginContext} from "./LoginContext";
 import '../App.css';
+import Particles from "react-tsparticles";
 
 // User Login Page
 class Login extends Component {
@@ -65,7 +66,34 @@ class Login extends Component {
     const { errors } = this.state;
     return (
       <div>
-        <button type="button" class="btn btn-outline-primary loginbutton">Primary</button>
+        <div className="form">
+          <h1>Login</h1>
+          <br />
+          <br />
+          <br />
+          <form>
+            <div className="form-group textbox">
+              <label htmlFor="exampleInputEmail1">Email address</label>
+              <input type="email" className="form-control inputbox" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+            </div>
+            <br />
+
+            <div class="form-group textbox">
+              <label htmlFor="exampleInputPassword1">Password</label>
+              <input type="password" className="form-control inputbox" id="exampleInputPassword1" placeholder="Password"/>
+            </div>
+            <br />
+            <br />
+            <br />
+            <button type="submit" className="btn btn-outline-primary loginbutton">Log in</button>
+          <br />
+          <br />
+          <br />
+          <br />
+          <p>Don't have an account? Sign up today!</p>
+          <button type="button" onClick={()=>this.props.history.push("/register")} className="btn btn-outline-primary loginbutton">Sign Up</button>
+          </form>
+        </div>
       </div>
     );
   }

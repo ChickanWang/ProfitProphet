@@ -1,6 +1,7 @@
 .loginbutton{
   width: 20vh;
 }
+
 .navbar{
   padding-top: 15px;
   padding-bottom: 15px;
@@ -22,4 +23,21 @@
   font-size:16px;
   line-height: 20px;
 
+}
+
+.form{
+  text-align: center;
+  margin-top: 10vh;
+  font-family: 'Montserrat', sans-serif;
+  align-items: center;
+  justify-content: center;
+}
+
+.textbox{
+  margin: auto;
+  width: 50vh;
+}
+
+.inputbox{
+  border-radius: 5vh;
 }
