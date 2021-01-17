@@ -175,10 +175,7 @@ def userinfo():
 def create():
     try:
         id = request.json['id']
-        token = session['user']
-        user = authe.get_account_info(token)
-        localId = user['users'][0]['localId']
-        stocks_ref.document("new_node").child(localId).set(request.json)
+        stocks_ref.document(id).set(request.json)
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
