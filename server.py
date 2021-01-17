@@ -7,7 +7,7 @@ from predict import *
 
 import pyrebase
 import firebase_admin
-from firebase_admin import credentials, auth
+from firebase_admin import credentials, auth, firestore, initialize_app
 from functools import wraps
 
 from dotenv import load_dotenv
@@ -31,7 +31,10 @@ config = {
     "appId": os.getenv("FBAID")}
 	
 cred = credentials.Certificate('fbAdminConfig.json')
-firebase = firebase_admin.initialize_app(cred)
+firebase = initialize_app(cred)
+db = firestore.client()
+stocks_ref = db.collection('stocks')
+
 pb = pyrebase.initialize_app(config)
 db = pb.database()
 authe = pb.auth()
@@ -169,9 +172,16 @@ def userinfo():
 #         return {'message': 'Success'},200
 
 @app.route('/add', methods=['POST'])
-def add():
-    content = request.get_json()
-    db.child("user").push(content)
+def create():
+    try:
+        id = request.json['id']
+        token = session['user']
+        user = authe.get_account_info(token)
+        localId = user['users'][0]['localId']
+        stocks_ref.document("new_node").child(localId).set(request.json)
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        return f"An Error Occured: {e}"
 
 if __name__ == "__main__": 
     app.run(debug=True)
