@@ -28,7 +28,7 @@ def news():
     symbol = request.args.get('symbol')
     client = newsauthenticate_client(key, endpoint)
     pos, neu, neg = newssentiment_analysis_example(client, symbol)
-    data = {"Positive": pos, "Neutral": neu, "Negative": neg}
+    data = {"Positive": pos*100, "Neutral": neu*100, "Negative": neg*100}
     response = app.response_class(
         response=json.dumps(data),
         status=200,
@@ -40,7 +40,7 @@ def discussion():
     symbol = request.args.get('symbol')
     client = discauthenticate_client(key, endpoint)
     pos, neu, neg = discsentiment_analysis_example(client, symbol)
-    data = {"Positive": pos, "Neutral": neu, "Negative": neg}
+    data = {"Positive": pos*100, "Neutral": neu*100, "Negative": neg*100}
     response = app.response_class(
         response=json.dumps(data),
         status=200,
