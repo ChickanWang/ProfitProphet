@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {LoginContext} from "./LoginContext";
+import '../App.css';
 
 // User Login Page
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
+      email: "",
       password: "",
       errors: {}
     };
@@ -27,7 +28,7 @@ class Login extends Component {
     const {toggleLogin} = this.context;
     e.preventDefault();
     const userData = {
-      username: this.state.username,
+      email: this.state.email,
       password: this.state.password,
       errors:{}
     };
@@ -38,6 +39,7 @@ class Login extends Component {
         body: JSON.stringify(userData)
     }
 
+    //NEED TO MODIFY THIS 
     // Request token for corresponding user account from backend
     fetch('/api/login', requestOptions)
         .then(response => {
@@ -55,71 +57,31 @@ class Login extends Component {
 
   };
 
+
   render() {
     if(this.context.loggedIn){
-      this.props.history.push("/search");
+      this.props.history.push("/home");
     }
     const { errors } = this.state;
     return (
-      <div className="container-fluid poppin login"  style={{marginTop:"50px",maxWidth:"750px",width:"100%"}}>
-        <div className="row">
-          <div className="col-sm-12">
-            <div>
-              <h4>
-                <b>Log In</b>
-              </h4>
-              <p>
-                No account? <Link to="/register">Sign Up</Link>
-              </p>
-            </div>
-            <form noValidate onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label for="username">Username</label>
-                <input className="form-control"
-                  onChange={this.onChange}
-                  value={this.state.username}
-                  error={errors.username}
-                  id="username"
-                  type="username"
-                />
-              </div>
-              <div className="form-group">
-                <label for="password">Password</label>
-                <input className="form-control"
-                  onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
-                  type="password"
-                />
-              </div>
-                <button
-                  style={{
-                    width: "100px",
-                    borderRadius: "3px",
-                    float:"left"
-                  }}
-                  type="submit"
-                  className="btn btn-primary"
-                >
-                  Log In
-                </button>
-              
-            </form>
+      <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Profit Prophet</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-            {/* Errors */}
-            <small className="form-text text-danger">
-                  {errors.username}
-                  <br/>
-                  {errors.usernamenotfound}
-                  <br/>
-                  {errors.password}
-                  <br/>
-                  {errors.passwordincorrect}
-            </small>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+              <li className="nav-item">
+                      <Link to="/login" className="nav-link text-muted">Login</Link>
+                  </li>
+                  <li className="nav-item">
+                      <Link to="/register" className="nav-link text-muted">Register</Link>
+                  </li>
+              </ul>
           </div>
-        </div>
-        
+        </nav>
       </div>
     );
   }
