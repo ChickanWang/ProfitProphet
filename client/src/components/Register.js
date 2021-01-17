@@ -1,6 +1,6 @@
-import react from 'react';
+import React from 'react';
 
-function Homepage() {
+function Register() {
 
     return (
         <div>
@@ -36,4 +36,4 @@ function Homepage() {
     )
 }
 
-export default Homepage;
+export default Register;
