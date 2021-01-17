@@ -24,13 +24,30 @@ def discsentiment_analysis_example(client, symbol):
     convos = soup.findAll("div", {"class": "C($c-fuji-grey-l) Mb(2px) Fz(14px) Lh(20px) Pend(8px)"})
 
     fullstring = ""
-    for i in range(1, 11):
-        if i == 0:
-            fullstring = convos[i].text
-        else: 
-            fullstring = fullstring + ". " + convos[i].text
+    length = 0
+    if (symbol == "TSLA"):
+        for i in range(1, 2):
+            if i == 0:
+                fullstring = convos[i].text
+            else: 
+                fullstring = fullstring + ". " + convos[i].text
+    else:
+        for i in range(1, 11):
+            if i == 0:
+                fullstring = convos[i].text
+            else: 
+                if length < 4000:
+                    fullstring = fullstring + ". " + convos[i].text
+                    length = len(fullstring)
     documents = [fullstring]
+    print(documents)
     response = client.analyze_sentiment(documents=documents)[0]
+    print("Document Sentiment: {}".format(response.sentiment))
+    print("Overall scores: positive={0:.2f}; neutral={1:.2f}; negative={2:.2f} \n".format(
+        response.confidence_scores.positive,
+        response.confidence_scores.neutral,
+        response.confidence_scores.negative,
+    ))
     positivitytotal = 0
     neutraltotal = 0
     negativitytotal = 0
@@ -41,13 +58,13 @@ def discsentiment_analysis_example(client, symbol):
             neutraltotal +=  sentence.confidence_scores.neutral
             negativitytotal += sentence.confidence_scores.negative
             count += 1
-        # print("Sentence: {}".format(sentence.text))
-        # print("Sentence {} sentiment: {}".format(idx+1, sentence.sentiment))
-        # print("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n".format(
-        #     sentence.confidence_scores.positive,
-        #     sentence.confidence_scores.neutral,
-        #     sentence.confidence_scores.negative,
-        # ))
+        print("Sentence: {}".format(sentence.text))
+        print("Sentence {} sentiment: {}".format(idx+1, sentence.sentiment))
+        print("Sentence score:\nPositive={0:.2f}\nNeutral={1:.2f}\nNegative={2:.2f}\n".format(
+            sentence.confidence_scores.positive,
+            sentence.confidence_scores.neutral,
+            sentence.confidence_scores.negative,
+        ))
     positive = 0
     neutral = 0
     negative = 0

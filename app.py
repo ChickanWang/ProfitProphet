@@ -52,10 +52,6 @@ def predict():
     allowSelfSignedHttps(True)
     content = request.get_json()
     symbol = content['symbol']
-   
-    if (symbol != "MSFT" and symbol != "AC.TO" and symbol != "AAPL" and symbol != "TSLA" and symbol != "ENB.TO" 
-        and symbol != "TD.TO" and symbol != "BABA" and symbol != "FB" and symbol != "GOOS.TO"):
-        symbol = "^GSPC"
 
     ticker = yf.Ticker(symbol)
     openprice = ticker.info["bid"]
@@ -63,6 +59,10 @@ def predict():
     low = ticker.info["dayLow"]
     close= 0
 
+    if (symbol != "MSFT" and symbol != "AC.TO" and symbol != "AAPL" and symbol != "TSLA" and symbol != "ENB.TO" 
+        and symbol != "TD.TO" and symbol != "BABA" and symbol != "FB" and symbol != "GOOS.TO"):
+        symbol = "^GSPC"
+    
     data = {
     "Inputs": {
           "WebServiceInput0":

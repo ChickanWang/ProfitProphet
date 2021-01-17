@@ -53,10 +53,9 @@ class Item extends Component{
           <div className="row">
             <div className="col-sm-6 blacktext" >
               <h1 className="display-4">{this.state.symbol}</h1>
-              <p>Current Price: ${this.state.startprice}</p>
               <p>Next Hour's Predicted Price: ${this.state.output}</p>
               <div className="results">
-                  <iframe src={'https://wallmine.com/widgets/chart/'+this.props.match.params.symbol} async frameborder='0' allowtransparency='true' scrolling='no' style={{width: "100%", height: "450px"}}></iframe>     
+                  <iframe src={'https://wallmine.com/widgets/chart/'+ this.props.match.params.symbol} async frameborder='0' allowtransparency='true' scrolling='no' style={{width: "100%", height: "450px"}}></iframe>     
               </div>
             </div>
             <div className="col-sm-6 bg-light" >
