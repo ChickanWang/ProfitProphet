@@ -12,7 +12,7 @@ import Login from "./components/Login";
 // import Register from "./components/Register";
 // import Search from "./components/Search";
 // import Watchlist from "./components/Watchlist";
-// import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar"
 // import Item from "./components/Item";
 // import NotFound from "./components/NotFound";
 class App extends Component {
@@ -54,7 +54,7 @@ class App extends Component {
       <LoginContext.Provider value={this.state}>
         <Router>
           <div className="App">
-          {/* <Navbar /> */}
+          <Navbar />
             <Switch>
               {/* <Route exact path="/" component={Home} /> */}
               <Route exact path="/login" component={Login} />
