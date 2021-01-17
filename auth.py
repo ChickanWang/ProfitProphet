@@ -18,10 +18,9 @@ cred = credentials.Certificate('fbAdminConfig.json')
 firebase = firebase_admin.initialize_app(cred)
 pb = pyrebase.initialize_app(config)
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
 @app.route('/signup', methods=['POST'])
-
 def register():
 	info = request.get_json()
 	print(info)
