@@ -43,3 +43,23 @@
 .inputbox{
   border-radius: 5vh;
 }
+
+.form2{
+  display: flex;
+  margin-top: 30vh;
+  font-family: 'Montserrat', sans-serif;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+  /* margin:auto; */
+}
+
+.formbox{
+  max-width: 400px;
+  min-width: 350px; 
+}
+
+.sidebyside{
+  display:flex;
+}
