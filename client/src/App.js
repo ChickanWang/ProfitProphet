@@ -59,10 +59,10 @@ class App extends Component {
           <Navbar />
             <Switch>
               <Route exact path="/stock" component={Home2} />
+              <Route exact path="/stock/:symbol" component={Stock} />
+              <Route exact path="/" component={About} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/" component={About} />
-              <Route exact path="/stock/:symbol" component={Stock} />
               {/* <Route exact path="/search" component={Search} />
               <Route exact path="/watchlist" component={Watchlist} />
               <Route exact path="/item/:upc?" component={Item} />

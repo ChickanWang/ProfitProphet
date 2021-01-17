@@ -41,11 +41,11 @@ predictendpoint = os.getenv("PREDICTIONENDPOINT")
 # authe = pb.auth()
 
 
-app = Flask(__name__)
+app = Flask("App", static_folder='./client/build', static_url_path='/')
 
-@app.route("/")
-def home():
-    return "Hello, World!"
+@app.errorhandler(404)
+def not_found(e):
+    return app.send_static_file('index.html')
 
 @app.route("/news", methods=["GET"])
 def news():
