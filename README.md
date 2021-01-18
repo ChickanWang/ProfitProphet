@@ -6,7 +6,7 @@ The stock market is an incredibly lucrative financial opportunity for anyone, bu
 # What it does
 ProfitProphet was made to address the high risks and ‘unknown factors’ of the stock market. By making more accurate predictions, users of this tool can mitigate much of their losses and become more incentivized to invest.
 
-# How We built it
+# How we built it
 ProfitProphet was made with a mix of Flask and React, as the backend and frontend respectively. All API calls were done from the backend, processed, then passed back to the React frontend. We used beautifulsoup4 to scrape recent data and Microsoft Azure Text Analytics API along with a custom linear regression model made in Microsoft Azure Machine Learning Studio.
 
 # Microsoft Azure API Usage:
