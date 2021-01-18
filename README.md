@@ -1,3 +1,5 @@
+Check out our project demo here! https://www.youtube.com/watch?v=R6USLZnCf9g
+
 # Inspiration
 The stock market is an incredibly lucrative financial opportunity for anyone, but with great rewards comes great risk. We sought to create a webapp that can minimize the risk of the stock market by predicting the future stock price, ultimately increasing accessibility and interest in the stock market. In the status quo, many stock market tools already exist, however, we noticed that there were some less common analysis methods that are readily available to the public. Thus we decided to create an application that analyzes stocks based on their market trends, news articles, and discussions. Given the challenges we faced being new to the stock market we wanted to make this very beginner-friendly so we made it a simple web application.
 
